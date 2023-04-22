@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:51:51 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/22 02:21:52 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/22 04:04:38 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ time_to_sleep [number_of_times_each_philo_must_eat]\n"
 # define FAIL_PARSING_OVERFLOW	"Overflow detected\n"
 # define FAIL_PARSING_UNDERFLOW	"Underflow detected\n"
 # define FAIL_ERROR				"Error occured\n"
+# define FAIL_INITIALIZATION	"Initialization failed\n"
+# define FAIL_GETTIME			"Function getttimeoftheday failed\n"
 
 typedef struct s_args
 {
@@ -39,6 +41,15 @@ typedef struct s_args
 	int	size;
 }		t_args;
 
+typedef struct s_timer
+{
+	long	start_seconds;
+	long	seconds;
+	long	start_microseconds;
+	long	microseconds;
+	size_t	elapsed_time;
+}		t_timer;
+
 bool	ft_atoi(long *result, char *array);
 bool	check_ac(int ac);
 bool	ft_isdigit(int c);
@@ -49,4 +60,7 @@ void	initialization_t_eat(int data, t_args *args);
 void	initialization_t_die(int data, t_args *args);
 void	initialization_nb_philos(int data, t_args *args);
 void	display_args(t_args *args);
+void	display_actual_time(void);
+bool	initialization_timer(t_timer *timer);
+bool	update_timer(t_timer *timer);
 #endif

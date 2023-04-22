@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 00:51:45 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/22 02:21:14 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/22 03:15:05 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool	initialization_args(int ac, char **av, t_args *args)
 	while (i < 5)
 	{
 		if (!ft_atoi(&data, av[i]))
-			return (false);
+			return (ft_print_error_bool(FAIL_INITIALIZATION, false));
 		give_value[i - 1](data, args);
 		data = 0;
 		++i;
@@ -52,7 +52,7 @@ bool	initialization_args(int ac, char **av, t_args *args)
 	if (ac == 6)
 	{
 		if (!ft_atoi(&data, av[i]))
-			return (false);
+			return (ft_print_error_bool(FAIL_INITIALIZATION, false));
 		args->nb_philos_eat = data;
 	}
 	args->size = ac - 1;
