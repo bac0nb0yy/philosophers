@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:51:51 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/22 04:07:14 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/22 06:13:14 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_timer
 	long	seconds;
 	long	start_microseconds;
 	long	microseconds;
-	size_t	timestamp;
+	long	timestamp;
 }		t_timer;
 
 bool	ft_atoi(long *result, char *array);
