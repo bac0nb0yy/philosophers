@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:51:51 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 11:25:42 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 14:04:30 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define SLEEP					"is sleeping"
 # define THINK					"is thinking"
 # define DEAD					"died"
+# define END 					"Everyone have eaten"
 
 # define RESET 					"\033[0m"
 
@@ -76,6 +77,7 @@ typedef struct s_args
 	int				min_meals;
 	int				nb_philos_finished;
 	bool			philo_dead;
+	bool			philo_eat;
 	pthread_mutex_t	check;
 }		t_args;
 

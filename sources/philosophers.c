@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 22:12:08 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 11:33:15 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 13:28:55 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av)
 
 	if (!check_ac(ac) || !init_args(ac, av, &args))
 		return (ft_print_error_bool(FAIL_ERROR, false));
+	display_args(&args);
 	forks = malloc_forks(args.nb_philos);
 	if (forks == NULL)
 		return (ft_print_error_bool(FAIL_MALLOC, false));

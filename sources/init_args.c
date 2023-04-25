@@ -57,5 +57,6 @@ bool	init_args(int ac, char **av, t_args *args)
 		return (clear_args(args), ft_print_error_bool(FAIL_MUTEX_INIT, false));
 	args->nb_philos_finished = 0;
 	args->philo_dead = false;
+	args->philo_eat = false;
 	return (true);
 }

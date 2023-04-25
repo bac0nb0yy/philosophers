@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 09:59:19 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 11:54:10 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 14:17:19 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	philo_eat(t_philo *philos)
 	display_msg(philos, FORK);
 	pthread_mutex_lock(philos->r_fork);
 	display_msg(philos, FORK);
+	philos->count_meals++;
 	philos->last_meal = get_current_time();
 	display_msg(philos, EAT);
 	ft_usleep(philos->args->t_eat * 1000);

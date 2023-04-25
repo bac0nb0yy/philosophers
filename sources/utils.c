@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 22:05:39 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 12:20:06 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 13:20:59 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	philo_eat_min_meals(t_philo *philo)
 {
-	if (philo->count_meals >= philo->args->min_meals)
+	if (philo->count_meals == philo->args->min_meals)
 		++philo->args->nb_philos_finished;
 }
 

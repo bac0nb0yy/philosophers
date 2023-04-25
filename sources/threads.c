@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 07:34:44 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 12:21:29 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 14:20:44 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	*check(void *arg)
 	int		i;
 
 	philos = (t_philo *)arg;
-	while (philos->args->nb_philos_finished < philos->args->nb_philos)
+	while (philos->args->nb_philos_finished != philos->args->nb_philos)
 	{
 		i = 0;
 		while (i < philos->args->nb_philos)
@@ -85,15 +85,14 @@ void	*check(void *arg)
 			{
 				display_msg(&philos[i], DEAD);
 				philos->args->philo_dead = true;
-				return (pthread_mutex_unlock(&philos[i].args->check), NULL);
+				return (NULL);
 			}
 			philo_eat_min_meals(&philos[i]);
 			++i;
 		}
-		usleep(500);
 	}
-	return (printf("Everyone have eaten %d meals!\n", philos->args->min_meals),
-		NULL);
+	display_msg(philos, END);
+	return (NULL);
 }
 
 bool	threads(t_args *args, pthread_mutex_t *forks, t_philo *philos)

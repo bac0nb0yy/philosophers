@@ -6,11 +6,27 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 10:01:26 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 12:08:07 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 14:23:20 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	everyone_finished(t_philo *philos)
+{
+	int	i;
+	int	count;
+
+	count = 0;
+	i = 0;
+	while (i < philos->args->nb_philos)
+	{
+		if (philos[i].count_meals == philos->args->min_meals)
+			++count;
+		++i;
+	}
+	return (count);
+}
 
 void	ft_usleep(size_t time)
 {
