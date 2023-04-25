@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 04:45:13 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 05:27:09 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 09:57:18 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ pthread_mutex_t	*malloc_forks(int size)
 
 bool	init_forks(pthread_mutex_t *forks, int size)
 {
-	int				i;
+	int	i;
 
 	i = 0;
 	while (i < size)

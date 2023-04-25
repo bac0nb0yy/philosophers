@@ -15,7 +15,7 @@ BLUE = \033[0;34m
 RED = \033[0;31m
 PURPLE = \033[0;35m
 CYAN = \033[0;36m
-BLACK = \033[0;30
+BLACK = \033[0;30m
 WHITE = \033[0;37m
 
 # Colors
@@ -33,11 +33,14 @@ SRC_DIR = sources/
 FILES = parsing \
 		philosophers \
 		utils \
+		utils2 \
 		init_args \
 		init_philos \
 		init_forks \
 		timer \
+		threads \
 		clear_all \
+		philo_actions \
 
 SRCS = 	$(addsuffix .c, $(addprefix $(SRC_DIR), $(FILES)))
 

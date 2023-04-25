@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 07:34:44 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 08:55:53 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 12:21:29 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ bool	create_threads_philos(t_args *args, pthread_mutex_t *forks,
 	while (i < args->nb_philos)
 	{
 		philos[i].start_time = get_current_time();
-		philos[i].last_meal = get_timestamp(&philos[i]);
+		philos[i].last_meal = get_current_time();
 		if (philos[i].start_time == 0 || philos[i].last_meal == 0)
 			return (clear_threads(philos, 0, i),
 				clear_all(args, forks, philos), false);
-		if (pthread_create(&philos[i].thread_id, NULL, routine,
+		if (pthread_create(&philos[i].thread_id, NULL, life,
 				(void *)&philos[i]) != 0)
 			return (clear_threads(philos, 0, i), clear_all(args, forks, philos),
 				ft_print_error_bool(FAIL_THREAD_CREATE, false));
@@ -42,7 +42,7 @@ bool	join_threads_philos(t_args *args, pthread_mutex_t *forks,
 	i = 0;
 	while (i < args->nb_philos)
 	{
-		if (pthread_join(philos[i].t_id, NULL) != 0)
+		if (pthread_join(philos[i].thread_id, NULL) != 0)
 			return (clear_threads(philos, 0, args->nb_philos),
 				clear_all(args, forks, philos),
 				ft_print_error_bool(FAIL_THREAD_JOIN, false));
@@ -76,23 +76,21 @@ void	*check(void *arg)
 	int		i;
 
 	philos = (t_philo *)arg;
-	while (philos->args->nb_philos_finished != philos->args->nb_philos)
+	while (philos->args->nb_philos_finished < philos->args->nb_philos)
 	{
 		i = 0;
 		while (i < philos->args->nb_philos)
 		{
-			pthread_mutex_lock(&philos[i].are_alive);
 			if (is_dead(&philos[i]))
 			{
-				// TODO display philo death
-				philo->args->philo_dead = true;
-				return (pthread_mutex_unlock(&philos[i].are_alive)
-					pthread_mutex_unlock(&philos[i].args->check), NULL);
+				display_msg(&philos[i], DEAD);
+				philos->args->philo_dead = true;
+				return (pthread_mutex_unlock(&philos[i].args->check), NULL);
 			}
-			pthread_mutex_unlock(&philos[i].are_alive);
 			philo_eat_min_meals(&philos[i]);
 			++i;
 		}
+		usleep(500);
 	}
 	return (printf("Everyone have eaten %d meals!\n", philos->args->min_meals),
 		NULL);

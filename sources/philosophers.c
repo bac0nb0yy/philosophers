@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 22:12:08 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 08:49:36 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 11:33:15 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int	main(int ac, char **av)
 		return (ft_print_error_bool(FAIL_MALLOC, false));
 	if (!init_philos(philos, &args, forks))
 		return (ft_print_error_bool(FAIL_ERROR, false));
-	// printf("nb philos finished : %d\n", philos->args->nb_philos_finished);
-	// philos[2].count_meals = philos->args->min_meals;
-	// philo_eat_min_meals(&philos[2]);
-	// printf("nb philos finished : %d\n", philos->args->nb_philos_finished);
+	if (!threads(&args, forks, philos))
+		return (ft_print_error_bool(FAIL_ERROR, false));
 	clear_all(&args, forks, philos);
 }

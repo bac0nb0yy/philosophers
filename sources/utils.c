@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 22:05:39 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 08:48:35 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 12:20:06 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	philo_eat_min_meals(t_philo *philo)
 {
-	if (philo->count_meals == philo->args->min_meals)
-		philo->args->nb_philos_finished += 1;
+	if (philo->count_meals >= philo->args->min_meals)
+		++philo->args->nb_philos_finished;
 }
 
 bool	is_dead(t_philo *philo)
 {
-	return (((int)(get_current_time() - philo->last_meal)
+	return (((int)((get_current_time() - philo->last_meal) / MICROS_TO_MILLIS)
 		>= philo->args->t_die));
 }
 

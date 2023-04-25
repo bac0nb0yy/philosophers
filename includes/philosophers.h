@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:51:51 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 08:49:20 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 11:25:42 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,32 @@
 # define S_TO_MICROS			1000000
 # define S_TO_MILLIS			1000
 # define MICROS_TO_MILLIS		1000	
+
+# define FORK					"has taken a fork"
+# define EAT					"is eating"
+# define SLEEP					"is sleeping"
+# define THINK					"is thinking"
+# define DEAD					"died"
+
+# define RESET 					"\033[0m"
+
+# define YELLOW					"\033[0;33m"
+# define GREEN 					"\033[0;32m"
+# define BLUE					"\033[0;34m"
+# define RED  					"\033[0;31m"
+# define PURPLE  				"\033[0;35m"
+# define CYAN  					"\033[0;36m"
+# define BLACK  				"\033[0;30m"
+# define WHITE  				"\033[0;37m"
+
+# define BYELLOW  				"\033[1;33m"
+# define BGREEN  				"\033[1;32m"
+# define BBLUE  				"\033[1;34m"
+# define BRED  					"\033[1;31m"
+# define BPURPLE 				"\033[1;35m"
+# define BCYAN 					"\033[1;36m"
+# define BBLACK 				"\033[1;30m"
+# define BWHITE 				"\033[1;37m"
 
 typedef struct s_args
 {
@@ -102,4 +128,10 @@ bool			create_checker(t_args *args, pthread_mutex_t *forks,
 void			*check(void *arg);
 bool			is_dead(t_philo *philo);
 void			philo_eat_min_meals(t_philo *philo);
+void			ft_usleep(size_t time);
+void			*case_one_philo(t_philo *philo);
+void			display_msg(t_philo *philos, char *action);
+void			*life(void *arg);
+void			philo_sleep(t_philo *philos);
+void			philo_eat(t_philo *philos);
 #endif
