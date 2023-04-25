@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:51:51 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 07:28:55 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 08:05:02 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define FAIL_PARSING_NEGATIVE	"Negative argument found\n"
 # define FAIL_MALLOC			"Malloc() failed\n"
 # define FAIL_MUTEX_INIT		"Initialization of a mutex failed\n"
+# define FAIL_THREAD_CREATE		"Thread creation failed\n"
+# define FAIL_THREAD_JOIN		"Thread join failed\n"
 
 # define S_TO_MICROS			1000000
 # define S_TO_MILLIS			1000
@@ -88,4 +90,10 @@ bool			init_philos(t_philo *philos, t_args *args,
 					pthread_mutex_t *forks);
 void			display_philos(t_philo *philos);
 size_t			get_timestamp(t_philo *philo);
+void			clear_threads(t_philo *philos, int start, int end);
+bool			threads(t_args *args, pthread_mutex_t *forks, t_philo *philos);
+bool			join_threads_philos(t_args *args, pthread_mutex_t *forks,
+					t_philo *philos);
+bool			create_threads_philos(t_args *args, pthread_mutex_t *forks,
+					t_philo *philos);
 #endif

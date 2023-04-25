@@ -6,11 +6,26 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 04:56:27 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 06:15:04 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 07:53:05 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	clear_threads(t_philo *philos, int start, int end)
+{
+	int	i;
+
+	if (philos)
+	{
+		i = start;
+		while (i < end)
+		{
+			pthread_detach(philos[i].thread_id);
+			++i;
+		}
+	}
+}
 
 void	clear_philos(t_philo *philos, int size_to_clear)
 {
