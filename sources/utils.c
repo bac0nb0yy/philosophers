@@ -6,11 +6,23 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 22:05:39 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 07:23:15 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 08:48:35 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	philo_eat_min_meals(t_philo *philo)
+{
+	if (philo->count_meals == philo->args->min_meals)
+		philo->args->nb_philos_finished += 1;
+}
+
+bool	is_dead(t_philo *philo)
+{
+	return (((int)(get_current_time() - philo->last_meal)
+		>= philo->args->t_die));
+}
 
 bool	ft_isdigit(int c)
 {

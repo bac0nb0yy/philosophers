@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 04:51:29 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 06:23:56 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 08:40:09 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	init_philos(t_philo *philos, t_args *args, pthread_mutex_t *forks)
 		philos[i].l_fork = &forks[i];
 		philos[i].r_fork = &forks[(i + 1) % args->nb_philos];
 		philos[i].last_meal = -1;
-		if (pthread_mutex_init(&philos[i].is_alive, NULL) != 0)
+		if (pthread_mutex_init(&philos[i].are_alive, NULL) != 0)
 			return (clear_philos(philos, i), clear_forks(forks,
 					args->nb_philos), clear_args(args),
 				ft_print_error_bool(FAIL_MUTEX_INIT, false));

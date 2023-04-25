@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 04:56:27 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 07:53:05 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 08:40:21 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	clear_philos(t_philo *philos, int size_to_clear)
 		i = 0;
 		while (i < size_to_clear)
 		{
-			pthread_mutex_destroy(&philos[i].is_alive);
+			pthread_mutex_destroy(&philos[i].are_alive);
 			philos[i].l_fork = NULL;
 			philos[i].r_fork = NULL;
 			++i;

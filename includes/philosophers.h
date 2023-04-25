@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:51:51 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 08:05:02 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 08:49:20 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ typedef struct s_philo
 	pthread_t		thread_id;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	is_alive;
+	pthread_mutex_t	are_alive;
 	size_t			last_meal;
-	unsigned int	count_meals;
+	int				count_meals;
 	size_t			start_time;
 	t_args			*args;
 }		t_philo;
@@ -90,10 +90,16 @@ bool			init_philos(t_philo *philos, t_args *args,
 					pthread_mutex_t *forks);
 void			display_philos(t_philo *philos);
 size_t			get_timestamp(t_philo *philo);
+size_t			get_current_time(void);
 void			clear_threads(t_philo *philos, int start, int end);
 bool			threads(t_args *args, pthread_mutex_t *forks, t_philo *philos);
 bool			join_threads_philos(t_args *args, pthread_mutex_t *forks,
 					t_philo *philos);
 bool			create_threads_philos(t_args *args, pthread_mutex_t *forks,
 					t_philo *philos);
+bool			create_checker(t_args *args, pthread_mutex_t *forks,
+					t_philo *philos);
+void			*check(void *arg);
+bool			is_dead(t_philo *philo);
+void			philo_eat_min_meals(t_philo *philo);
 #endif
