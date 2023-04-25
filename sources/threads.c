@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 07:34:44 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 08:42:16 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 08:55:53 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,12 @@ void	*check(void *arg)
 					pthread_mutex_unlock(&philos[i].args->check), NULL);
 			}
 			pthread_mutex_unlock(&philos[i].are_alive);
-			if (casted[i].eaten_meals == casted->args->must_eat_times)
-				casted->args->satisfied_philos += 1;
+			philo_eat_min_meals(&philos[i]);
 			++i;
 		}
 	}
-	return (printf("Every Philosopher had %d meals!\n",
-			casted->args->must_eat_times), NULL);
+	return (printf("Everyone have eaten %d meals!\n", philos->args->min_meals),
+		NULL);
 }
 
 bool	threads(t_args *args, pthread_mutex_t *forks, t_philo *philos)
