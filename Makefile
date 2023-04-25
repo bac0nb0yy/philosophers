@@ -33,8 +33,11 @@ SRC_DIR = sources/
 FILES = parsing \
 		philosophers \
 		utils \
-		initialization \
-		timer
+		init_args \
+		init_philos \
+		init_forks \
+		timer \
+		clear_all \
 
 SRCS = 	$(addsuffix .c, $(addprefix $(SRC_DIR), $(FILES)))
 

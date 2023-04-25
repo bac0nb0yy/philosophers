@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 22:05:39 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/22 02:23:34 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 07:23:15 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	display_args(t_args *args)
 	int	i;
 
 	i = 0;
-	while (i < args->size)
+	while (i < 5)
 	{
 		if (i == 0)
 			printf("number_of_philosophers: %d\n", args->nb_philos);
@@ -37,9 +37,9 @@ void	display_args(t_args *args)
 			printf("time_to_eat: %d\n", args->t_eat);
 		else if (i == 3)
 			printf("time_to_sleep: %d\n", args->t_sleep);
-		else if (i == 4)
+		else if (i == 4 && args->min_meals != -1)
 			printf("number_of_times_each_philosopher_must_eat: %d\n",
-				args->nb_philos_eat);
+				args->min_meals);
 		++i;
 	}
 }

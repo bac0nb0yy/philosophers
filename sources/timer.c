@@ -6,33 +6,29 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 02:58:38 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/22 05:19:14 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/25 07:23:59 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-bool	initialization_timer(t_timer *timer)
+bool	init_timer(t_philo *philo)
 {
-	struct timeval	current_time;
+	struct timeval	time;
 
-	if (gettimeofday(&current_time, NULL) == -1)
+	if (gettimeofday(&time, NULL) == -1)
 		return (ft_print_error_bool(FAIL_GETTIME, false));
-	timer->start_seconds = current_time.tv_sec;
-	timer->start_microseconds = current_time.tv_usec;
-	timer->timestamp = 0;
+	philo->start_time = time.tv_sec * S_TO_MICROS + time.tv_usec;
 	return (true);
 }
 
-bool	update_timer(t_timer *timer)
+size_t	get_timestamp(t_philo *philo)
 {
-	struct timeval	current_time;
+	size_t			timestamp;
+	struct timeval	time;
 
-	if (gettimeofday(&current_time, NULL) == -1)
+	if (gettimeofday(&time, NULL) == -1)
 		return (ft_print_error_bool(FAIL_GETTIME, false));
-	timer->seconds = current_time.tv_sec;
-	timer->microseconds = current_time.tv_usec;
-	timer->timestamp = (((timer->seconds - timer->start_seconds) * 1000)
-			+ (timer->microseconds - timer->start_microseconds) / 1000);
-	return (true);
+	timestamp = (time.tv_sec * S_TO_MICROS + time.tv_usec) - philo->start_time;
+	return (timestamp);
 }
