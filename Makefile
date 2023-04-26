@@ -1,8 +1,8 @@
 NAME = philo
 PROJECT_NAME = Philosophers
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -I includes/
+CC = clang
+CFLAGS = -Wall -Wextra -Werror -pthread -I includes/
 RM = rm -rf
 
 # Reset

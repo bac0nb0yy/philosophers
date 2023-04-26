@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:51:51 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 14:04:30 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/26 06:06:01 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,12 @@ typedef struct s_args
 	int				t_eat;
 	int				t_sleep;
 	int				min_meals;
-	int				nb_philos_finished;
+	bool			philos_finished_eat;
 	bool			philo_dead;
-	bool			philo_eat;
-	pthread_mutex_t	check;
+	pthread_mutex_t	m_dead_or_finish;
+	pthread_mutex_t	m_eat;
+	pthread_mutex_t	m_display;
+	pthread_mutex_t	
 }		t_args;
 
 typedef struct s_philo
@@ -87,7 +89,6 @@ typedef struct s_philo
 	pthread_t		thread_id;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	are_alive;
 	size_t			last_meal;
 	int				count_meals;
 	size_t			start_time;

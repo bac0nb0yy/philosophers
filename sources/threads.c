@@ -6,11 +6,11 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 07:34:44 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 14:20:44 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/26 00:47:00 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 bool	create_threads_philos(t_args *args, pthread_mutex_t *forks,
 	t_philo *philos)

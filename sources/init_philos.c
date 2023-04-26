@@ -6,11 +6,11 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 04:51:29 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 11:55:57 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/26 05:33:06 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 t_philo	*malloc_philos(int size)
 {
@@ -31,11 +31,9 @@ bool	init_philos(t_philo *philos, t_args *args, pthread_mutex_t *forks)
 		philos[i].count_meals = 0;
 		philos[i].l_fork = &forks[i];
 		philos[i].r_fork = &forks[(i + 1) % args->nb_philos];
-		philos[i].last_meal = 0;
-		if (pthread_mutex_init(&philos[i].are_alive, NULL) != 0)
-			return (clear_philos(philos, i), clear_forks(forks,
-					args->nb_philos), clear_args(args),
-				ft_print_error_bool(FAIL_MUTEX_INIT, false));
+		philos[i].last_meal = get_current_time();
+		if (philos[i].last_meal == 0)
+			return (false);
 		philos[i].args = args;
 		++i;
 	}

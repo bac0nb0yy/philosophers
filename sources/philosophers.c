@@ -6,11 +6,11 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 22:12:08 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 13:28:55 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/26 00:46:57 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 int	main(int ac, char **av)
 {

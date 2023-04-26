@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 void	philos(int data, t_args *args)
 {
@@ -54,7 +54,7 @@ bool	init_args(int ac, char **av, t_args *args)
 		args->min_meals = data;
 	}
 	if (pthread_mutex_init(&args->check, NULL) != 0)
-		return (clear_args(args), ft_print_error_bool(FAIL_MUTEX_INIT, false));
+		return (ft_print_error_bool(FAIL_MUTEX_INIT, false));
 	args->nb_philos_finished = 0;
 	args->philo_dead = false;
 	args->philo_eat = false;

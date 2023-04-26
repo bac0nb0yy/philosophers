@@ -6,11 +6,11 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 10:01:26 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 14:23:20 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/26 00:47:10 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 int	everyone_finished(t_philo *philos)
 {

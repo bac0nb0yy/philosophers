@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 04:56:27 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 12:13:04 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/04/26 00:06:21 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,6 @@ void	clear_philos(t_philo *philos, int size_to_clear)
 	}
 }
 
-void	clear_args(t_args *args)
-{
-	args = NULL;
-}
-
 void	clear_forks(pthread_mutex_t *forks, int size_to_clear)
 {
 	int	i;
@@ -71,5 +66,4 @@ void	clear_all(t_args *args, pthread_mutex_t *forks, t_philo *philos)
 {
 	clear_philos(philos, args->nb_philos);
 	clear_forks(forks, args->nb_philos);
-	clear_args(args);
 }
