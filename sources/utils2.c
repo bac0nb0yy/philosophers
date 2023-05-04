@@ -6,11 +6,11 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 10:01:26 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/26 00:47:10 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/05/03 21:26:02 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "philosophers.h"
 
 int	everyone_finished(t_philo *philos)
 {
@@ -39,19 +39,19 @@ void	ft_usleep(size_t time)
 
 void	*case_one_philo(t_philo *philo)
 {
-	pthread_mutex_lock(philo->l_fork);
 	display_msg(philo, FORK);
+	pthread_mutex_lock(philo->args->m_last_meal);
 	philo->last_meal = get_current_time();
+	pthread_mutex_unlock(philo->args->m_last_meal);
 	return (NULL);
 }
 
 void	display_msg(t_philo *philos, char *action)
 {
-	size_t	timestamp;
-
-	timestamp = get_current_time() - philos->start_time;
-	pthread_mutex_lock(&philos->args->check);
-	if (philos->args->philo_dead == false)
-		printf("%zu Philosopher %u %s\n", timestamp / 1000, philos->num, action);
-	pthread_mutex_unlock(&philos->args->check);
+	pthread_mutex_lock(philos->args->m_display);
+	if (!someone_die(philos) && !everyone_ate(philos))
+		printf("%zu Philosopher %u %s\n",
+			(get_current_time() - philos->args->start_time) / 1000,
+			philos->num, action);
+	pthread_mutex_unlock(philos->args->m_display);
 }

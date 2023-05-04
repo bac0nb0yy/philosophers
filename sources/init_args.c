@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "philosophers.h"
 
 void	philos(int data, t_args *args)
 {
@@ -32,7 +32,7 @@ void	t_sleep(int data, t_args *args)
 	args->t_sleep = data;
 }
 
-bool	init_args(int ac, char **av, t_args *args)
+bool	init_args(int ac, char **av, t_args *args, pthread_mutex_t *all_mutex)
 {
 	static void	(*f[])(int, t_args *) = {philos, t_die, t_eat, t_sleep};
 	long		data;
@@ -41,7 +41,7 @@ bool	init_args(int ac, char **av, t_args *args)
 	i = 1;
 	while (i < 5)
 	{
-		if (!ft_atoi(&data, av[i]))
+		if (!ft_atoi(&data, av[i]) || (i > 1 && data >= INT_MAX / 10))
 			return (ft_print_error_bool(FAIL_INIT, false));
 		f[i - 1](data, args);
 		++i;
@@ -53,10 +53,9 @@ bool	init_args(int ac, char **av, t_args *args)
 			return (ft_print_error_bool(FAIL_INIT, false));
 		args->min_meals = data;
 	}
-	if (pthread_mutex_init(&args->check, NULL) != 0)
-		return (ft_print_error_bool(FAIL_MUTEX_INIT, false));
-	args->nb_philos_finished = 0;
 	args->philo_dead = false;
-	args->philo_eat = false;
+	args->philos_finished_eat = false;
+	if (!init_mutex(args, all_mutex))
+		return (ft_print_error_bool(FAIL_INIT, false));
 	return (true);
 }

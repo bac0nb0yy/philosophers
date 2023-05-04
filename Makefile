@@ -37,6 +37,8 @@ FILES = parsing \
 		init_args \
 		init_philos \
 		init_forks \
+		init_mutex \
+		check_bools \
 		timer \
 		threads \
 		clear_all \

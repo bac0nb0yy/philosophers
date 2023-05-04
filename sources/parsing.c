@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:48:03 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/25 05:32:28 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/05/03 01:29:14 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ bool	ft_atoi(long *result, char *array)
 			return (ft_print_error_bool(FAIL_PARSING_OVERFLOW, false));
 		++i;
 	}
+	if (*result == 0)
+		return (ft_print_error_bool(FAIL_PARSING_NEGATIVE, false));
 	return (true);
 }
 

@@ -6,11 +6,31 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 04:56:27 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/04/26 00:06:21 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/05/02 18:48:31 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	clear_mutex(pthread_mutex_t *all_mutex, t_args *args, int start,
+						int end)
+{
+	int	i;
+
+	i = start;
+	while (i < end)
+	{
+		pthread_mutex_destroy(&all_mutex[i]);
+		++i;
+	}
+	free(all_mutex);
+	all_mutex = NULL;
+	args->m_display = NULL;
+	args->m_dead = NULL;
+	args->m_count_meals = NULL;
+	args->m_last_meal = NULL;
+	args->m_finish = NULL;
+}
 
 void	clear_threads(t_philo *philos, int start, int end)
 {
@@ -62,8 +82,10 @@ void	clear_forks(pthread_mutex_t *forks, int size_to_clear)
 	}
 }
 
-void	clear_all(t_args *args, pthread_mutex_t *forks, t_philo *philos)
+void	clear_all(t_args *args, pthread_mutex_t *forks, t_philo *philos,
+					pthread_mutex_t *all_mutex)
 {
 	clear_philos(philos, args->nb_philos);
 	clear_forks(forks, args->nb_philos);
+	clear_mutex(all_mutex, args, 0, 5);
 }
