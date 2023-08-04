@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 09:59:19 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/05/03 01:28:55 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/08/04 15:36:57 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,15 @@ void	*life(void *arg)
 	philos = (t_philo *)arg;
 	if (philos->args->nb_philos == 1)
 		return (case_one_philo(philos));
+	if (!(philos->num % 2))
+		ft_usleep(500);
 	while (!everyone_ate(philos) && !someone_die(philos))
 	{
-		if (philos->num % 2 == 0)
-			ft_usleep(500);
 		philo_eat(philos);
-		ft_usleep(500);
 		philo_sleep(philos);
 		display_msg(philos, THINK);
+		if (philos->args->t_sleep <= philos->args->t_eat)
+			ft_usleep((philos->args->t_eat - philos->args->t_sleep + 1) * 1000);
 	}
 	return (NULL);
 }
