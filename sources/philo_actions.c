@@ -6,7 +6,7 @@
 /*   By: dtelnov <dtelnov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 09:59:19 by dtelnov           #+#    #+#             */
-/*   Updated: 2023/08/12 13:28:21 by dtelnov          ###   ########.fr       */
+/*   Updated: 2023/08/12 18:03:38 by dtelnov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ void	*life(void *arg)
 		philo_sleep(philos);
 		display_msg(philos, THINK);
 		if (philos->args->t_sleep <= philos->args->t_eat)
-			ft_usleep(((philos->args->t_eat - philos->args->t_sleep) * 1000)
-				+ 250);
+			ft_usleep((philos->args->t_eat - philos->args->t_sleep + 1) * 1000);
 	}
 	return (NULL);
 }
